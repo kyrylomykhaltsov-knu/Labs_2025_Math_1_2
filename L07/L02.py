@@ -12,9 +12,11 @@ def is_pow5(n):
         n = n // 5
     return True
 
-def is_prime(N):  # N - число яке ми будемо перевіряти чи воно просте
-    for i in range(2, int(N ** 0.5) + 1):
-        if N % i == 0:  # якщо поділилося без остачі,
+def prime(k):  # k - число яке ми будемо перевіряти чи воно просте
+    if k == 1:
+        return False
+    for i in range(2, k):
+        if k % i == 0:  # якщо поділилося без остачі,
             return False  # то число не просте
     return True
 
@@ -29,7 +31,7 @@ for n in numbers:
         pow5s.append(n)
     if is_square(n):
         squares.append(n)
-    if is_prime(n):
+    if prime(n):
         primes.append(n)
 
 print("Прості числа  ", primes)

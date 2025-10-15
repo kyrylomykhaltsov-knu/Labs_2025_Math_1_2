@@ -1,14 +1,12 @@
-def is_prime(k):  # N - число яке ми будемо перевіряти чи воно просте
+def is_prime(k):
     for i in range(2, k):
-        if k % i == 0:  # якщо поділилося без остачі,
-            return False  # то число не просте
+        if k % i == 0:
+            return False
     return True
 
-
-################ main program ################
+######## main ########
 
 n = int(input())
-
-for i in range(n, 2 * n - 1):
+for i in range (n, 2 * n - 1):
     if is_prime(i) and is_prime(i + 2):
-        print(i, i + 2)
+        print(i, i +2)

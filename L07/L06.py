@@ -1,27 +1,40 @@
+# Підрахунок "дзеркально простих" на відрізку [a, b]
+# Дозволені лише: цикли, списки, функції, розгалуження.
 
-def prime(k):  # k - число яке ми будемо перевіряти чи воно просте
-    if k == 1:
-        return False
-    for i in range(2, k):
-        if k % i == 0:  # якщо поділилося без остачі,
-            return False  # то число не просте
-    return True
+def sieve(limit):
+    # решето Ератосфена -> список булів is_prime[0..limit]
+    is_prime = [False, False] + [True] * (limit - 1)  # 0 і 1 — не прості
+    p = 2
+    while p * p <= limit:
+        if is_prime[p]:
+            q = p * p
+            while q <= limit:
+                is_prime[q] = False
+                q += p
+        p += 1
+    return is_prime
 
-def invert(k):
-    inv = 0
-    while k > 0:
-        inv = inv * 10 + k % 10
-        k = k // 10
-    return inv
+def reverse_num(x):
+    # дзеркальне число без рядків
+    r = 0
+    while x > 0:
+        r = r * 10 + (x % 10)
+        x //= 10
+    return r
 
+def count_mirror_primes(a, b):
+    LIMIT = 10000  # за умовою b ≤ 10000; дзеркало теж ≤ 10000
+    is_prime = sieve(LIMIT)
+    cnt = 0
+    n = a
+    while n <= b:
+        if is_prime[n]:
+            rn = reverse_num(n)
+            if is_prime[rn]:
+                cnt += 1
+        n += 1
+    return cnt
 
-
-######## Main ########
-
-a, b = [int(el) for el in input().split()]
-counter = 0
-for i in range(a, b + 1):
-    if prime(i) and prime(invert(i)):
-        counter += 1
-
-print(counter)
+# ----- ввід/вивід -----
+a, b = map(int, input().split())
+print(count_mirror_primes(a, b))

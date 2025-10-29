@@ -1,6 +1,11 @@
 str = input()
-
 counter = 0
+
+for ch in str: # A, E, I, O, U і Y
+    if ch == "A" or ch == "E" or ch == "I" or ch == "O" or ch == "U" or ch == "Y":
+        counter += 1
+print(counter)
+
 
 
 

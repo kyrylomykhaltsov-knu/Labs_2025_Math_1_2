@@ -18,30 +18,44 @@
 #         return C(n-1, k-1) + C(n-1, k)
 # print(C(5, 2)
 
-def C(n, k):
-    # біноміальний коефіцієнт
-    if k == 0 or k == n:
-        return 1
-    return C(n - 1, k - 1) + C(n - 1, k)
+# def C(n, k):
+#     # біноміальний коефіцієнт
+#     if k == 0 or k == n:
+#         return 1
+#     return C(n - 1, k - 1) + C(n - 1, k)
+#
+# def print_row(i, k=0):
+#     # рекурсивно друкує i-й рядок: C(i,0) C(i,1) ... C(i,i)
+#     if k > i:
+#         print()            # кінець рядка
+#         return
+#     if k > 0:
+#         print(' ', end='')
+#     print(C(i, k), end='')
+#     print_row(i, k + 1)
+#
+# def pascal_rec(n, i=0):
+#     # рекурсивно друкує перші n рядків (0..n-1)
+#     if n <= 0:
+#         return
+#     if i == n:
+#         return
+#     print_row(i)
+#     pascal_rec(n, i + 1)
+#
+# # приклад:
+# pascal_rec(15)
 
-def print_row(i, k=0):
-    # рекурсивно друкує i-й рядок: C(i,0) C(i,1) ... C(i,i)
-    if k > i:
-        print()            # кінець рядка
-        return
-    if k > 0:
-        print(' ', end='')
-    print(C(i, k), end='')
-    print_row(i, k + 1)
 
-def pascal_rec(n, i=0):
-    # рекурсивно друкує перші n рядків (0..n-1)
-    if n <= 0:
-        return
-    if i == n:
-        return
-    print_row(i)
-    pascal_rec(n, i + 1)
+def R(n):
+    A=[[1], [1,1]]
+    for i in range(2,n):
+        A.append([1])
+        for j in range(1,i):
+            A[i].append(A[i-1][j]+A[i-1][j-1])
+        A[i].append(1)
+    return A
 
-# приклад:
-pascal_rec(15)
+A=R(11)
+for a in A:
+    print(*a)

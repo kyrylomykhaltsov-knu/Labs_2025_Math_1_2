@@ -1,8 +1,6 @@
 # Підрахунок "дзеркально простих" на відрізку [a, b]
-# Дозволені лише: цикли, списки, функції, розгалуження.
 
 def sieve(limit):
-    # решето Ератосфена -> список булів is_prime[0..limit]
     is_prime = [False, False] + [True] * (limit - 1)  # 0 і 1 — не прості
     p = 2
     while p * p <= limit:
@@ -35,6 +33,5 @@ def count_mirror_primes(a, b):
         n += 1
     return cnt
 
-# ----- ввід/вивід -----
 a, b = map(int, input().split())
 print(count_mirror_primes(a, b))

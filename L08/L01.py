@@ -11,7 +11,7 @@
 #      //
 # 0! = 1
 
-########## Main ##########
+
 
 def Fact(n):
     if n == 0:
@@ -19,6 +19,8 @@ def Fact(n):
     else:
         f = Fact(n-1)
         return f * n
+
+########## Main ##########
 
 f = Fact(5)
 print(f)
